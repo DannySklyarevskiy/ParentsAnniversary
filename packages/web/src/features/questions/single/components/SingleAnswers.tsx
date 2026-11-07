@@ -8,6 +8,7 @@ import clsx from "clsx"
 
 const SingleAnswers = ({
   answers,
+  answerPhotos,
   onSubmit,
   readOnly,
   fill,
@@ -29,6 +30,7 @@ const SingleAnswers = ({
           onClick={() => handleSubmit(key)}
           disabled={readOnly}
           large={fill}
+          photo={answerPhotos?.[key]}
         >
           {answer}
         </AnswerButton>

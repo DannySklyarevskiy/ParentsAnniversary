@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next"
 
 const MultiAnswers = ({
   answers,
+  answerPhotos,
   onSubmit,
   readOnly,
   fill,
@@ -55,6 +56,7 @@ const MultiAnswers = ({
               selected={readOnly ? undefined : isSelected}
               disabled={readOnly}
               large={fill}
+              photo={answerPhotos?.[key]}
             >
               {answer}
             </AnswerButton>

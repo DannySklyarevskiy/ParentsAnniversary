@@ -1,6 +1,7 @@
 import Answers from "@razzia/web/features/game/components/states/Answers"
 import Leaderboard from "@razzia/web/features/game/components/states/Leaderboard"
 import PlayerFinished from "@razzia/web/features/game/components/states/PlayerFinished"
+import Photo from "@razzia/web/features/game/components/states/Photo"
 import Podium from "@razzia/web/features/game/components/states/Podium"
 import Prepared from "@razzia/web/features/game/components/states/Prepared"
 import Question from "@razzia/web/features/game/components/states/Question"
@@ -48,6 +49,7 @@ export const GAME_STATE_COMPONENTS_MANAGER = {
   ...GAME_STATE_COMPONENTS,
   [STATUS.SHOW_ROOM]: Room,
   [STATUS.SHOW_RESPONSES]: Responses,
+  [STATUS.SHOW_PHOTO]: Photo,
   [STATUS.SHOW_LEADERBOARD]: Leaderboard,
   [STATUS.FINISHED]: Podium,
 }
@@ -83,6 +85,7 @@ export const MANAGER_SKIP_BTN = {
   [STATUS.SELECT_ANSWER]: "common:skip",
   [STATUS.SHOW_RESULT]: null,
   [STATUS.SHOW_RESPONSES]: "common:next",
+  [STATUS.SHOW_PHOTO]: "common:next",
   [STATUS.SHOW_LEADERBOARD]: "common:next",
   [STATUS.FINISHED]: "common:exit",
   [STATUS.SUMMARY]: "common:exit",

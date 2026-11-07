@@ -21,7 +21,7 @@ Create `config/branding/theme.json`:
   },
   "logo": "/branding/logo.svg",
   "favicon": "/branding/favicon.svg",
-  "background": "/branding/background.png"
+  "background": "/branding/background.webp"
 }
 ```
 

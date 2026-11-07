@@ -68,7 +68,9 @@ export interface Question {
   category?: string
   note?: string
   media?: QuestionMedia
+  photo?: string
   answers: string[]
+  answerPhotos?: string[]
   solutions?: number[]
   cooldown: number
   time: number

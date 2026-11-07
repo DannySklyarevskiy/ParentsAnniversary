@@ -8,6 +8,7 @@ type Props = PropsWithChildren &
     correct?: boolean
     selected?: boolean
     large?: boolean
+    photo?: string
   }
 
 const AnswerButton = ({
@@ -17,6 +18,7 @@ const AnswerButton = ({
   correct,
   selected,
   large,
+  photo,
   ...otherProps
 }: Props) => {
   const CorrectIcon = correct ? Check : X
@@ -48,6 +50,16 @@ const AnswerButton = ({
         >
           {children}
         </p>
+        {photo && (
+          <img
+            src={photo}
+            alt=""
+            className={clsx(
+              "col-span-3 row-start-3 w-full rounded-lg bg-black/20 object-contain",
+              large ? "h-40 lg:h-64" : "h-24 sm:h-40 lg:h-56",
+            )}
+          />
+        )}
         {correct !== undefined && (
           <CorrectIcon className="col-start-3 row-start-1 size-4 stroke-6 md:size-6" />
         )}

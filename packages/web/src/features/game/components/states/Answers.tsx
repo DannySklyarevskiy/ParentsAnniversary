@@ -28,6 +28,7 @@ const Answers = ({
   data: {
     question,
     answers,
+    answerPhotos,
     media,
     time,
     totalPlayer,
@@ -172,6 +173,7 @@ const Answers = ({
 
         <AnswerComponent
           answers={answers}
+          answerPhotos={answerPhotos}
           options={options}
           onSubmit={handleSubmit}
           readOnly={!player}

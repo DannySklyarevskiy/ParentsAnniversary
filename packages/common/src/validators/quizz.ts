@@ -11,17 +11,18 @@ import { multiOptionsValidator } from "@razzia/common/validators/questions/choic
 import { estimationOptionsValidator } from "@razzia/common/validators/questions/estimation"
 import { z } from "zod"
 
+const mediaUrlValidator = z
+  .string("errors:quizz.invalidMediaUrl")
+  .refine(
+    (url) => url.startsWith(MEDIA_URL_PREFIX) || z.url().safeParse(url).success,
+    "errors:quizz.invalidMediaUrl",
+  )
+
 export const questionMediaValidator = z.object({
   type: z
     .enum([MEDIA_TYPES.IMAGE, MEDIA_TYPES.VIDEO, MEDIA_TYPES.AUDIO])
     .optional(),
-  url: z
-    .string("errors:quizz.invalidMediaUrl")
-    .refine(
-      (url) =>
-        url.startsWith(MEDIA_URL_PREFIX) || z.url().safeParse(url).success,
-      "errors:quizz.invalidMediaUrl",
-    ),
+  url: mediaUrlValidator,
 })
 
 export const mediaUploadValidator = z.object({
@@ -36,6 +37,8 @@ const questionSchema = z.object({
   category: z.string().optional(),
   note: z.string().optional(),
   media: questionMediaValidator.optional(),
+  photo: mediaUrlValidator.optional(),
+  answerPhotos: z.array(mediaUrlValidator.or(z.literal(""))).optional(),
   answers: z.array(z.string().min(1, "errors:quizz.answerEmpty")),
   solutions: z.array(z.number()).optional(),
   cooldown: z

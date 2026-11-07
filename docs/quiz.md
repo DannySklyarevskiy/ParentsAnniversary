@@ -58,6 +58,8 @@ Quiz Options:
   - `media`: Optional media object displayed with the question:
     - `type`: `"image"`, `"video"`, or `"audio"`
     - `url`: URL of the media, either a full `http(s)://` URL or a `/media/...` path for a file uploaded from the editor (stored in `config/media`)
+  - `photo`: Optional image URL (same format as `media.url`) shown on the main screen after the correct answer is revealed, before the leaderboard, e.g. `"/media/wedding.jpg"`
+  - `answerPhotos`: Optional array of image URLs (same format as `media.url`), one per entry in `answers` and in the same order, shown inside each answer button while players pick. Use `""` for an answer without a photo
   - `solutions`: Array of correct answer indices (0-based). Use multiple indices for multi-answer questions. Required in `"quiz"` mode, omitted in `"survey"` mode
   - `cooldown`: Time in seconds before answers are revealed (3-15)
   - `time`: Time in seconds allowed to answer (5-120)

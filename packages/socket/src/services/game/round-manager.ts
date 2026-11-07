@@ -94,6 +94,15 @@ export class RoundManager {
         delay: (settings) => settings.autoAdvance.responsesDelay,
       },
       {
+        name: "photo",
+        gameModes: [QUIZZ_MODES.QUIZ, QUIZZ_MODES.SURVEY],
+        skip: () => !this.question.photo,
+        enter: () => {
+          this.showPhoto()
+        },
+        delay: (settings) => settings.autoAdvance.responsesDelay,
+      },
+      {
         name: "leaderboard",
         gameModes: [QUIZZ_MODES.QUIZ],
         skip: () => this.isLastQuestion() || this.isSameCategoryNext(),
@@ -318,6 +327,7 @@ export class RoundManager {
     this.opts.broadcast(STATUS.SELECT_ANSWER, {
       question: this.question.question,
       answers: this.question.answers,
+      answerPhotos: this.question.answerPhotos,
       media: this.question.media,
       time: this.question.time,
       totalPlayer: this.opts.players.count(),
@@ -422,6 +432,17 @@ export class RoundManager {
     this.leaderboard = sortedPlayers
     this.tempOldLeaderboard ??= oldLeaderboard
     this.playersAnswers = []
+  }
+
+  private showPhoto(): void {
+    if (!this.question.photo) {
+      return
+    }
+
+    this.opts.send(this.opts.getManagerId(), STATUS.SHOW_PHOTO, {
+      question: this.question.question,
+      photo: this.question.photo,
+    })
   }
 
   private showLeaderboard(): void {
@@ -536,6 +557,11 @@ export class RoundManager {
     }
 
     const points = (() => {
+      // The first question is a warm-up and never awards points
+      if (this.currentQuestion === 0) {
+        return 0
+      }
+
       if (isEstimationOptions(this.question.options)) {
         return this.question.maxPoints ?? MAX_POINTS
       }

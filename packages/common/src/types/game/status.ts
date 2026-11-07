@@ -13,6 +13,7 @@ export const STATUS = {
   SELECT_ANSWER: "SELECT_ANSWER",
   SHOW_RESULT: "SHOW_RESULT",
   SHOW_RESPONSES: "SHOW_RESPONSES",
+  SHOW_PHOTO: "SHOW_PHOTO",
   SHOW_LEADERBOARD: "SHOW_LEADERBOARD",
   FINISHED: "FINISHED",
   SUMMARY: "SUMMARY",
@@ -36,6 +37,7 @@ export interface CommonStatusDataMap {
   SELECT_ANSWER: {
     question: string
     answers: string[]
+    answerPhotos?: string[]
     media?: QuestionMedia
     time: number
     totalPlayer: number
@@ -72,6 +74,7 @@ interface ManagerExtraStatus {
     options?: QuestionOptions
     note?: string
   }
+  SHOW_PHOTO: { question: string; photo: string }
   SHOW_LEADERBOARD: { oldLeaderboard: Player[]; leaderboard: Player[] }
 }
 
